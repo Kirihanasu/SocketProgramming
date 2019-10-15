@@ -27,6 +27,7 @@ public class ServerInterface extends Application{
     VBox vbox = new VBox(10, text, textField, btnStart);
     Scene scene = new Scene(vbox, 250, 100);
     Server server = new Server();
+    MultiServer multiServer = new MultiServer();
 
     textField.setAlignment(Pos.CENTER);
     textField.setMaxWidth(60);
@@ -40,8 +41,12 @@ public class ServerInterface extends Application{
         int port = Integer.parseInt(textField.getText());
         vbox.getChildren().remove(textField);
         vbox.getChildren().remove(btnStart);
-        text.setText("Server started on ip " + InetAddress.getLocalHost().toString().split("/")[1] + ":" + port + "\nawaiting clients...");
-        new Thread(() -> server.start(port)).start();
+
+        //text.setText("Server started on ip " + InetAddress.getLocalHost().toString().split("/")[1] + ":" + port + "\nawaiting client...");
+        //new Thread(() -> server.start(port)).start();
+
+        text.setText("MultiServer started on ip " + InetAddress.getLocalHost().toString().split("/")[1] + ":" + port + "\nawaiting clients...");
+        new Thread(() -> multiServer.start(port)).start();
       }catch(NumberFormatException ex){
         Alert alert = new Alert(Alert.AlertType.ERROR, textField.getText() + " is no valid port.");
         alert.show();
