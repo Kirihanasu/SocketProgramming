@@ -9,6 +9,8 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public class ClientInterface extends Application{
+  private VBox vbox;
+
   public static void main(String[] args){
     launch();
   }
@@ -19,7 +21,7 @@ public class ClientInterface extends Application{
     Text text = new Text("Enter IP and click 'Connect'.");
     TextField textField = new TextField();
     Button btnStart = new Button("Connect");
-    VBox vbox = new VBox(10, text, textField, btnStart);
+    vbox = new VBox(10, text, textField, btnStart);
     Scene scene = new Scene(vbox, 250, 100);
 
     textField.setAlignment(Pos.CENTER);
@@ -31,17 +33,18 @@ public class ClientInterface extends Application{
 
     btnStart.setOnAction(e -> {
       try{
-        Client c = new Client();
+        Client c = new Client(this);
         c.start(textField.getText().split(":")[0], Integer.parseInt(textField.getText().split(":")[1]));
-      }catch(ArrayIndexOutOfBoundsException ex){
-        Alert alert = new Alert(Alert.AlertType.ERROR, textField.getText() + " has to be of format\n123.456.789.012:12345");
-        alert.show();
-      }catch(NumberFormatException ex){
+      }catch(ArrayIndexOutOfBoundsException | NumberFormatException ex){
         Alert alert = new Alert(Alert.AlertType.ERROR, textField.getText() + " has to be of format\n123.456.789.012:12345");
         alert.show();
       }catch(Exception ex){
         ex.printStackTrace();
       }
     });
+  }
+
+  public VBox getVBox(){
+    return vbox;
   }
 }
