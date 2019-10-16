@@ -28,13 +28,8 @@ public class Client{
 
             System.out.println("client: " + obj);
 
-            if(obj instanceof IAmObject){
-              IAmObject iObj = (IAmObject) obj;
-              if(iObj.getImage() != null){
-                iface.getVBox().getChildren().add((new ImageView(iObj.getImage())));
-                System.out.println("look ma, no hands!");
-              }
-            }
+            ObjectOutputStream objectOutputStream = new ObjectOutputStream(socket.getOutputStream());
+            objectOutputStream.writeObject(obj);
           }
         }catch(ClassNotFoundException | IOException e){
           e.printStackTrace();
