@@ -1,4 +1,3 @@
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 import java.io.IOException;
@@ -30,10 +29,11 @@ public class Client{
             System.out.println("client: " + obj);
 
             if(obj instanceof IAmObject){
-
-            }else if(obj instanceof Image){
-              iface.getVBox().getChildren().add((new ImageView((Image)obj)));
-              System.out.println("look ma, no hands!");
+              IAmObject iObj = (IAmObject) obj;
+              if(iObj.getImage() != null){
+                iface.getVBox().getChildren().add((new ImageView(iObj.getImage())));
+                System.out.println("look ma, no hands!");
+              }
             }
           }
         }catch(ClassNotFoundException | IOException e){
