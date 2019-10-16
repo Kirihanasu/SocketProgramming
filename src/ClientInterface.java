@@ -33,7 +33,7 @@ public class ClientInterface extends Application{
 
     btnStart.setOnAction(e -> {
       try{
-        Client c = new Client(this);
+        Client c = new Client();
         c.start(textField.getText().split(":")[0], Integer.parseInt(textField.getText().split(":")[1]));
       }catch(ArrayIndexOutOfBoundsException | NumberFormatException ex){
         Alert alert = new Alert(Alert.AlertType.ERROR, textField.getText() + " has to be of format\n123.456.789.012:12345");
