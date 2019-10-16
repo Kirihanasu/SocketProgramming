@@ -17,9 +17,6 @@ public class Client{
       Socket socket = new Socket(ip, port);
       System.out.println("found a server and connected!");
 
-      ObjectOutputStream outputStream = new ObjectOutputStream(socket.getOutputStream());
-      outputStream.writeObject(new IAmObject("IamString", 16));
-
       new Thread(() -> {
         try{
           while(true){

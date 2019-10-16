@@ -32,7 +32,7 @@ public class MultiServer{
 
                         ObjectInputStream objectInputStream = new ObjectInputStream(socket.getInputStream());
                         IAmObject answer = (IAmObject) objectInputStream.readObject();
-                        System.out.println(answer);
+                        System.out.println("answer: " + answer);
                     }
                 }catch(IOException | ClassNotFoundException e){
                     e.printStackTrace();
