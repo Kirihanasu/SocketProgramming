@@ -1,5 +1,3 @@
-import javafx.scene.image.Image;
-
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -18,6 +16,7 @@ public class MultiServer{
                 try{
                     while(true){
                         Socket socket = serverSocket.accept();
+
                         ObjectInputStream objInput = new ObjectInputStream(socket.getInputStream());
                         ObjectOutputStream objOutput = new ObjectOutputStream(socket.getOutputStream());
 

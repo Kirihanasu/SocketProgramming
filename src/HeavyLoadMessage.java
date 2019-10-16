@@ -15,7 +15,7 @@ public class HeavyLoadMessage extends PingMessage{
 
     @Override
     public String toString(){
-        String s = "HeavyLoadMessage:\n  millis: " + super.getMillis() + "\n  answer: " + super.isAnswer() + "\n  size: " + ObjectSizeCalculator.getObjectSize(this);
+        String s = "HeavyLoadMessage:\n  millis: " + super.getMillis() + "\n  answer: " + super.isAnswer() + "\n  size: " + ObjectSizeCalculator.getObjectSize(this) + " bytes";
         return super.isAnswer() ? s + "\n  ping: " + (System.currentTimeMillis() - getMillis()) + " for back and forth communication" : s;
     }
 }
